@@ -18,7 +18,7 @@ fn main() {
 }
 pub fn is_palindrome(x: i32) -> bool {
     let s = x.to_string();
-    let mut r = x.to_string().len()-1;
+    let mut r = x.to_string().len() - 1;
     let mut l = 0;
     while r > l {
         if s.chars().nth(r).unwrap() != s.chars().nth(l).unwrap() {
@@ -28,4 +28,19 @@ pub fn is_palindrome(x: i32) -> bool {
         l += 1;
     }
     true
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_is_palindrome() {
+        let input: Vec<i32> = vec![1, 101, 12, -101];
+        let expected: Vec<bool> = vec![true, true, false, false];
+        for i in 0..input.len() {
+            let out = is_palindrome(input[i]);
+            assert_eq!(out, expected[i]);
+        }
+    }
 }
